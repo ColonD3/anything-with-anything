@@ -9,55 +9,79 @@
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 *{box-sizing:inherit}
 body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 -apple-system,system-ui,"Helvetica Neue",sans-serif}
-main{max-width:1000px;margin:0 auto;padding:32px 20px 60px}
-h1{font-size:clamp(36px,7vw,64px);line-height:.95;letter-spacing:-.03em;margin:0 0 8px;font-weight:800}
-p.sub{color:var(--mute);margin:0 0 24px;max-width:60ch}
-.row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px}
-.row button{font:inherit;font-weight:600;border:2px solid var(--line);background:none;color:var(--ink);padding:9px 14px;cursor:pointer;border-radius:0}
-.row button[aria-pressed=true]{border-color:var(--red);color:var(--red)}
-.desc{color:var(--mute);font-size:13px;min-height:1.4em;margin-bottom:16px}
-h2{font-size:20px;margin:18px 0 4px;letter-spacing:-.01em}
-h3{font-size:14px;text-transform:none;color:var(--mute);font-weight:600;margin:16px 0 6px}
-label{display:block;font-weight:600;margin:12px 0 4px}
-textarea,input[type=password],select{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:2px solid var(--ink);padding:10px;resize:vertical}
+main{max-width:640px;margin:0 auto;padding:28px 20px 60px}
+h1{font-size:clamp(34px,7vw,58px);line-height:.95;letter-spacing:-.03em;margin:0 0 8px;font-weight:800}
+p.sub{color:var(--mute);margin:0 0 28px;max-width:60ch}
+.step{border-top:2px solid var(--ink);padding-top:14px;margin-top:28px}
+.step h2{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--mute);margin:0 0 12px;font-weight:700}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:4px}
+.row button{font:inherit;font-weight:600;border:2px solid var(--line);background:none;color:var(--ink);padding:9px 14px;cursor:pointer;border-radius:0;flex:1;min-width:100px}
+.row button[aria-pressed=true]{border-color:var(--red);color:var(--red);background:color-mix(in srgb, var(--red) 8%, transparent)}
+.desc{color:var(--mute);font-size:13px;margin:8px 0 0}
+label{display:block;font-weight:600;margin:14px 0 4px}
+textarea,input[type=password]{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:2px solid var(--ink);padding:10px;resize:vertical}
 textarea{min-height:64px}
 textarea:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--red);outline-offset:2px}
-.file{display:block;border:2px dashed var(--line);padding:14px;text-align:center;color:var(--mute);cursor:pointer;margin-top:6px}
+.file{display:block;border:2px dashed var(--line);padding:16px;text-align:center;color:var(--mute);cursor:pointer;margin-top:6px;font-weight:600}
 .file input{display:none}
-button.go{font:inherit;font-weight:600;border:2px solid var(--red);background:var(--red);color:#fff;padding:12px 14px;cursor:pointer;width:100%;margin-top:14px;border-radius:0}
+button.go{font:inherit;font-weight:600;border:2px solid var(--red);background:var(--red);color:#fff;padding:13px 14px;cursor:pointer;width:100%;margin-top:14px;border-radius:0}
 button.go:disabled{opacity:.4;cursor:default}
-button.secondary{font:inherit;font-weight:600;border:2px solid var(--line);background:none;color:var(--mute);padding:9px 12px;cursor:pointer;margin-top:8px;width:auto;border-radius:0}
+button.secondary{font:inherit;font-weight:600;border:2px solid var(--line);background:none;color:var(--mute);padding:9px 12px;cursor:pointer;margin-top:8px;width:100%;border-radius:0}
 .chk{display:flex;align-items:center;gap:8px;font-weight:400;margin-top:12px}
 .pill{color:var(--mute);font-size:13px;margin-top:6px}
 .xray{font-size:13px;color:var(--mute);margin-top:10px;word-break:break-word}
 .xray b{color:var(--red)}
-.wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:8px}
-@media (max-width:780px){.wrap{grid-template-columns:1fr}}
-section.card{display:none}
-section.card.active{display:block}
-.sub-tabs{display:flex;gap:6px;margin:4px 0 10px}
-.sub-tabs button{font:inherit;font-size:13px;font-weight:600;border:2px solid var(--line);background:none;color:var(--ink);padding:6px 10px;cursor:pointer;border-radius:0}
-.sub-tabs button[aria-pressed=true]{border-color:var(--red);color:var(--red)}
-.payload-panel{display:none}
-.payload-panel.active{display:block}
+.panel{display:none}
+.panel.active{display:block}
 canvas{width:100%;image-rendering:pixelated;border:1px solid var(--line);display:block}
-#preview,#stegoCanvas{max-width:220px}
-#rxcanvas,#foundimg{max-width:100%;margin-top:10px}
-#foundimg{display:none}
-#rxcanvas{display:none}
-#found,#rxtext{font-size:20px;font-weight:700;margin-top:10px;color:var(--red);word-break:break-word}
-audio{width:100%;margin-top:10px}
+audio{width:100%;margin-top:8px;display:block}
+#found_out img,#found_out canvas,.result-block canvas{max-width:100%}
+.result-block{margin-top:10px}
+#found_text,.found-text{font-size:19px;font-weight:700;color:var(--red);word-break:break-word}
 .msg{color:var(--red);font-size:13px;min-height:1.3em;margin-top:6px}
 .status{font-weight:600;margin:14px 0 2px}
 .bar{height:8px;background:var(--line);margin:8px 0;position:relative}
 .bar div{height:100%;background:var(--red);width:0%;transition:width .1s linear}
 .tones{font:12px/1.4 ui-monospace,monospace;color:var(--mute);min-height:1.3em}
+.or{color:var(--mute);font-size:13px;text-align:center;margin:14px 0}
+select{font:inherit;border:2px solid var(--ink);background:var(--bg);color:var(--ink);padding:8px;width:100%}
 </style></head>
 <body><main>
 <h1>Anything in anything</h1>
-<p class="sub">Hide a message, a picture, or a short audio clip — inside ordinary text, inside another picture, or inside a burst of sound. Pick where it goes out, pick what goes in. Password-lock optional, every combination decodes on the other end.</p>
+<p class="sub">Pick what you want to hide, then pick where it hides. Every combination works the same way in reverse to reveal it.</p>
 
-<h3>Carrier — where it hides</h3>
+<div class="step">
+<h2>1. What to hide</h2>
+<div class="row" role="group" aria-label="What to hide">
+<button data-pt="text" aria-pressed="true">Text</button>
+<button data-pt="pic" aria-pressed="false">Picture</button>
+<button data-pt="aud" aria-pressed="false">Audio clip</button>
+</div>
+<div class="panel active" data-pp="text">
+<label for="ppSecret">Message</label>
+<textarea id="ppSecret">meet me at the lake at midnight</textarea>
+</div>
+<div class="panel" data-pp="pic">
+<label class="file" tabindex="0" id="ppPicLabel">Choose a picture<input id="ppPicFile" type="file" accept="image/*"></label>
+<label>Resolution (longest side) <span id="ppResV" style="font-weight:400;color:var(--mute)"></span></label>
+<input type="range" id="ppRes" min="8" max="255" value="32">
+<label>Compression <span id="ppQualV" style="font-weight:400;color:var(--mute)"></span></label>
+<input type="range" id="ppQual" min="5" max="95" value="65">
+<canvas id="ppPreview" style="max-width:200px;margin-top:6px;display:none"></canvas>
+</div>
+<div class="panel" data-pp="aud">
+<label class="file" tabindex="0" id="ppAudLabel">Choose an audio file<input id="ppAudFile" type="file" accept="audio/*"></label>
+<label>Clip length <span id="ppDurV" style="font-weight:400;color:var(--mute)"></span></label>
+<input type="range" id="ppDur" min="1" max="8" value="3" step="0.5">
+<label>Bitrate (lower = smaller, worse quality) <span id="ppBrV" style="font-weight:400;color:var(--mute)"></span></label>
+<input type="range" id="ppBr" min="6" max="48" value="16">
+<audio id="ppAudPreview" controls style="display:none"></audio>
+<div class="pill" id="ppAudSize"></div>
+</div>
+</div>
+
+<div class="step">
+<h2>2. Where to hide it</h2>
 <div class="row" role="group" aria-label="Carrier">
 <button data-c="text" aria-pressed="true">Text</button>
 <button data-c="pic" aria-pressed="false">Picture</button>
@@ -65,13 +89,9 @@ audio{width:100%;margin-top:10px}
 </div>
 <div class="desc" id="carrierDesc"></div>
 
-<!-- ================= TEXT CARRIER ================= -->
-<section id="cardText" class="card active">
-<div class="wrap">
-<section>
-<h2>Hide</h2>
-<h3>Method</h3>
-<div class="sub-tabs" role="group">
+<div class="panel active" data-carrier="text">
+<label>Method</label>
+<div class="row" role="group" aria-label="Text method">
 <button data-tm="tag" aria-pressed="true">Invisible chars</button>
 <button data-tm="zw" aria-pressed="false">Zero-width bits</button>
 <button data-tm="hg" aria-pressed="false">Lookalike letters</button>
@@ -79,127 +99,91 @@ audio{width:100%;margin-top:10px}
 <div class="desc" id="textModeDesc"></div>
 <label for="tCover">What people see</label>
 <textarea id="tCover">lol ok</textarea>
-<div id="payloadPanel_text"></div>
 <label class="chk"><input type="checkbox" id="tLock"> Lock with a password</label>
 <input type="password" id="tPw" placeholder="Password" style="display:none;margin-top:8px">
 <button class="go" id="tGo">Copy text with secret</button>
 <div class="msg" id="tMsg"></div>
 <div class="xray" id="tXray"></div>
-</section>
-<section>
-<h2>Reveal</h2>
-<label for="tProbe">Paste any text</label>
-<textarea id="tProbe" placeholder="Paste a message here"></textarea>
-<button class="secondary" id="tClear">Clear</button>
-<input type="password" id="tPw2" placeholder="Password (if it's locked)" style="display:none;margin-top:8px">
-<div id="revealOut_text"></div>
-<div class="msg" id="tMsg2"></div>
-</section>
 </div>
-</section>
 
-<!-- ================= PICTURE CARRIER ================= -->
-<section id="cardPic" class="card">
-<div class="wrap">
-<section>
-<h2>Hide</h2>
-<label>Cover picture (this is what people will see — looks unchanged)</label>
+<div class="panel" data-carrier="pic">
+<label>Cover picture (looks unchanged to the eye)</label>
 <label class="file" tabindex="0" id="picCoverLabel">Choose a cover picture<input id="picCover" type="file" accept="image/*"></label>
 <canvas id="stegoCanvas" style="display:none;margin-top:8px"></canvas>
-<div id="payloadPanel_pic"></div>
 <label class="chk"><input type="checkbox" id="pLock"> Lock with a password</label>
 <input type="password" id="pPw" placeholder="Password" style="display:none;margin-top:8px">
 <button class="go" id="pGo">Save picture with secret</button>
 <div class="msg" id="pMsg"></div>
 <div class="xray" id="pXray"></div>
-</section>
-<section>
-<h2>Reveal</h2>
-<label class="file" tabindex="0" id="picProbeLabel">Drop a stego picture<input id="picProbe" type="file" accept="image/*"></label>
-<input type="password" id="pPw2" placeholder="Password (if it's locked)" style="display:none;margin-top:8px">
-<div id="revealOut_pic"></div>
-<div class="msg" id="pMsg2"></div>
-</section>
 </div>
-</section>
 
-<!-- ================= SOUND CARRIER ================= -->
-<section id="cardSnd" class="card">
-<div class="wrap">
-<section>
-<h2>Send</h2>
-<div id="payloadPanel_snd"></div>
+<div class="panel" data-carrier="snd">
 <label class="chk"><input type="checkbox" id="sLock"> Lock with a password</label>
 <input type="password" id="sPw" placeholder="Password" style="display:none;margin-top:8px">
 <div class="pill" id="sEst"></div>
-<button class="go" id="sGo">Play sound</button>
+<button class="go" id="sGo">Generate sound</button>
+<audio id="sPreviewAudio" controls style="display:none"></audio>
+<button class="secondary" id="sDownload" style="display:none">Download this sound</button>
 <div class="msg" id="sMsg"></div>
-</section>
-<section>
-<h2>Receive</h2>
-<p class="pill">Hold the listening device near the speaker, quiet room, moderate volume.</p>
-<button class="go" id="sListen">Start listening</button>
+</div>
+</div>
+
+<div class="step">
+<h2>3. Reveal</h2>
+<div class="desc">Uses whichever carrier is selected above.</div>
+
+<div class="panel active" data-reveal="text">
+<label for="tProbe">Paste any text</label>
+<textarea id="tProbe" placeholder="Paste a message here"></textarea>
+<button class="secondary" id="tClear">Clear</button>
+<input type="password" id="tPw2" placeholder="Password (if it's locked)" style="display:none;margin-top:8px">
+<div id="found_text" class="result-block"></div>
+<div class="msg" id="tMsg2"></div>
+</div>
+
+<div class="panel" data-reveal="pic">
+<label class="file" tabindex="0" id="picProbeLabel">Drop a stego picture<input id="picProbe" type="file" accept="image/*"></label>
+<input type="password" id="pPw2" placeholder="Password (if it's locked)" style="display:none;margin-top:8px">
+<div id="found_pic" class="result-block"></div>
+<div class="msg" id="pMsg2"></div>
+</div>
+
+<div class="panel" data-reveal="snd">
+<label class="file" tabindex="0" id="sFileLabel">Upload a recording<input id="sFileProbe" type="file" accept="audio/*"></label>
+<div class="or">— or —</div>
+<button class="secondary" id="sListen">Listen live with the microphone</button>
 <button class="secondary" id="sStop" style="display:none">Stop listening</button>
 <div class="status" id="sStatus"></div>
 <div class="bar"><div id="sBar"></div></div>
 <div class="pill" id="sBytes"></div>
 <div class="tones" id="sTones"></div>
 <input type="password" id="sPw2" placeholder="Password (if it's locked)" style="display:none;margin-top:8px">
-<div id="revealOut_snd"></div>
+<div id="found_snd" class="result-block"></div>
 <div class="msg" id="sMsg2"></div>
-</section>
 </div>
-</section>
+</div>
 
-<template id="payloadPanelTemplate">
-<div class="sub-tabs" role="group" aria-label="What to hide">
-<button data-pt="text" aria-pressed="true">Text</button>
-<button data-pt="pic" aria-pressed="false">Picture</button>
-<button data-pt="aud" aria-pressed="false">Audio clip</button>
-</div>
-<div class="pp-text">
-<label>Message</label>
-<textarea class="pp-secret">meet me at the lake at midnight</textarea>
-</div>
-<div class="pp-pic" style="display:none">
-<label class="file" tabindex="0"><span class="pp-piclabel">Choose a picture</span><input class="pp-picfile" type="file" accept="image/*"></label>
-<label>Resolution (longest side) <span class="pp-resv" style="font-weight:400;color:var(--mute)"></span></label>
-<input type="range" class="pp-res" min="8" max="255" value="32">
-<label>Compression <span class="pp-qualv" style="font-weight:400;color:var(--mute)"></span></label>
-<input type="range" class="pp-qual" min="5" max="95" value="65">
-<canvas class="pp-preview" style="max-width:200px;margin-top:6px;display:none"></canvas>
-</div>
-<div class="pp-aud" style="display:none">
-<label class="file" tabindex="0"><span class="pp-audlabel">Choose an audio file</span><input class="pp-audfile" type="file" accept="audio/*"></label>
-<label>Clip length <span class="pp-durv" style="font-weight:400;color:var(--mute)"></span></label>
-<input type="range" class="pp-dur" min="1" max="8" value="3" step="0.5">
-<label>Bitrate (lower = smaller, worse quality) <span class="pp-brv" style="font-weight:400;color:var(--mute)"></span></label>
-<input type="range" class="pp-br" min="6" max="48" value="16">
-<audio class="pp-audpreview" controls style="display:none"></audio>
-<div class="pill pp-audsize"></div>
-</div>
-</template>
-
+</main>
 <script>
 const $=id=>document.getElementById(id);
 const enc=new TextEncoder(),td=new TextDecoder('utf-8',{fatal:true});
+let dl=null;window.claude&&claude.use('downloads').then(d=>{dl=d});
 
-// ---------- shared: password lock ----------
+// ================= shared: password lock =================
 async function keyFrom(pw){const h=await crypto.subtle.digest('SHA-256',enc.encode('anyink:'+pw));return crypto.subtle.importKey('raw',h,{name:'AES-GCM'},false,['encrypt','decrypt'])}
 async function lockBytes(bytes,pw){const iv=crypto.getRandomValues(new Uint8Array(12));const ct=new Uint8Array(await crypto.subtle.encrypt({name:'AES-GCM',iv},await keyFrom(pw),bytes));const o=new Uint8Array(1+12+ct.length);o[0]=1;o.set(iv,1);o.set(ct,13);return o}
 async function unlockBytes(bytes,pw){if(bytes[0]!==1)return bytes;const iv=bytes.slice(1,13),ct=bytes.slice(13);return new Uint8Array(await crypto.subtle.decrypt({name:'AES-GCM',iv},await keyFrom(pw),ct))}
 
-// ---------- shared: payload panel logic (text / picture / audio) ----------
+// ================= shared: typed payload build/render =================
 const TYPE_TEXT=0, TYPE_IMG_RAW=73, TYPE_IMG_JPEG=74, TYPE_AUDIO=65;
+function textPayloadBytes(str){const body=enc.encode(str);const out=new Uint8Array(body.length+1);out[0]=TYPE_TEXT;out.set(body,1);return out}
 function canvasToBlobP(c,type,q){return new Promise(res=>c.toBlob(res,type,q))}
 function blobToImage(blob){return new Promise((res,rej)=>{const im=new Image();im.onload=()=>res(im);im.onerror=rej;im.src=URL.createObjectURL(blob)})}
-function downsample(img,W,H,method){
- const c=document.createElement('canvas');c.width=W;c.height=H;const x=c.getContext('2d');
- if(method==='nearest'){x.imageSmoothingEnabled=false;x.drawImage(img,0,0,W,H);return[x.getImageData(0,0,W,H),c]}
+function downsampleArea(img,W,H){
  const full=document.createElement('canvas');let fw=img.naturalWidth||img.width,fh=img.naturalHeight||img.height;
  while(fw>W*2){fw=Math.max(W,Math.round(fw/2));fh=Math.max(H,Math.round(fh/2))}
  full.width=fw;full.height=fh;const fx=full.getContext('2d');fx.imageSmoothingEnabled=true;fx.drawImage(img,0,0,fw,fh);
- const sd=fx.getImageData(0,0,fw,fh).data,out=x.createImageData(W,H);
+ const sd=fx.getImageData(0,0,fw,fh).data,c=document.createElement('canvas');c.width=W;c.height=H;const x=c.getContext('2d'),out=x.createImageData(W,H);
  for(let j=0;j<H;j++)for(let i=0;i<W;i++){
   const x0=Math.floor(i/W*fw),x1=Math.max(x0+1,Math.floor((i+1)/W*fw)),y0=Math.floor(j/H*fh),y1=Math.max(y0+1,Math.floor((j+1)/H*fh));
   let r=0,g=0,b=0,n=0;for(let yy=y0;yy<y1;yy++)for(let xx=x0;xx<x1;xx++){const o=(yy*fw+xx)*4;r+=sd[o];g+=sd[o+1];b+=sd[o+2];n++}
@@ -209,161 +193,147 @@ function computeDims(img,long){const W0=img.naturalWidth||img.width,H0=img.natur
  let W,H;if(W0>=H0){W=long;H=Math.max(4,Math.round(long*H0/W0))}else{H=long;W=Math.max(4,Math.round(long*W0/H0))}
  return[Math.min(255,W),Math.min(255,H)]}
 
-// One "payload panel" instance per carrier: builds typed bytes for whichever tab (text/pic/aud) is active.
-function makePayloadPanel(mount){
- mount.appendChild($('payloadPanelTemplate').content.cloneNode(true));
- const root=mount;
- const q=sel=>root.querySelector(sel);
- const state={kind:'text',img:null,audBuf:null,audFile:null,onChange:()=>{}};
- root.querySelectorAll('.sub-tabs button').forEach(b=>b.onclick=()=>{
-  root.querySelectorAll('.sub-tabs button').forEach(x=>x.setAttribute('aria-pressed','false'));b.setAttribute('aria-pressed','true');
-  state.kind=b.dataset.pt;
-  q('.pp-text').style.display=state.kind==='text'?'block':'none';
-  q('.pp-pic').style.display=state.kind==='pic'?'block':'none';
-  q('.pp-aud').style.display=state.kind==='aud'?'block':'none';
-  state.onChange();
- });
- q('.pp-secret').addEventListener('input',()=>state.onChange());
- q('.pp-picfile').onchange=e=>{const f=e.target.files[0];if(!f)return;const im=new Image();im.onload=()=>{state.img=im;q('.pp-piclabel').textContent='Picture: '+f.name;drawPicPreview();state.onChange()};im.src=URL.createObjectURL(f)};
- q('.pp-res').addEventListener('input',()=>{drawPicPreview();state.onChange()});
- q('.pp-qual').addEventListener('input',()=>{drawPicPreview();state.onChange()});
- let picToken=0;
- async function buildPicBytes(){
-  if(!state.img)return null;
-  const long=+q('.pp-res').value,[W,H]=computeDims(state.img,long);
-  const[id,c]=downsample(state.img,W,H,'area');
-  const rawLen=W*H*3+3;
-  const qual=(+q('.pp-qual').value)/100;
-  const blob=await canvasToBlobP(c,'image/jpeg',Math.max(0.05,qual));
-  const jbuf=new Uint8Array(await blob.arrayBuffer());
-  if(jbuf.length+1>=rawLen){const d=id.data,px=new Uint8Array(rawLen);px[0]=TYPE_IMG_RAW;px[1]=W;px[2]=H;for(let i=0;i<W*H;i++){px[3+i*3]=d[i*4];px[4+i*3]=d[i*4+1];px[5+i*3]=d[i*4+2]}return{bytes:px,W,H,kind:'raw'}}
-  const px=new Uint8Array(jbuf.length+1);px[0]=TYPE_IMG_JPEG;px.set(jbuf,1);
-  return{bytes:px,W,H,kind:'jpeg',blob};
- }
- async function drawPicPreview(){
-  if(!state.img)return;const my=++picToken;
-  const r=await buildPicBytes();if(!r||my!==picToken)return;
-  const cv=q('.pp-preview');cv.width=r.W*6;cv.height=r.H*6;cv.style.display='block';const cx=cv.getContext('2d');cx.imageSmoothingEnabled=false;
-  if(r.kind==='jpeg'){const im=await blobToImage(r.blob);if(my!==picToken)return;cx.drawImage(im,0,0,cv.width,cv.height)}
-  else{const[id2]=downsample(state.img,r.W,r.H,'area');const small=document.createElement('canvas');small.width=r.W;small.height=r.H;small.getContext('2d').putImageData(id2,0,0);cx.drawImage(small,0,0,cv.width,cv.height)}
-  q('.pp-resv').textContent=r.W+'×'+r.H+' px';
-  q('.pp-qualv').textContent=r.bytes.length+' bytes'+(r.kind==='raw'?' (raw — smaller than JPEG here)':' at '+q('.pp-qual').value+'% quality');
- }
- q('.pp-audfile').onchange=async e=>{
-  const f=e.target.files[0];if(!f)return;
-  q('.pp-audlabel').textContent='Reading '+f.name+'…';
-  try{
-   const actx=new (window.AudioContext||window.webkitAudioContext)();
-   const buf=await actx.decodeAudioData(await f.arrayBuffer());
-   state.audBuf=buf;q('.pp-audlabel').textContent='Audio: '+f.name+' ('+buf.duration.toFixed(1)+'s available)';
-   q('.pp-dur').max=Math.min(8,buf.duration).toFixed(1);
-   buildAudPreview();
-  }catch{q('.pp-audlabel').textContent='Could not read that audio file.';state.audBuf=null}
-  state.onChange();
- };
- q('.pp-dur').addEventListener('input',()=>{q('.pp-durv').textContent=q('.pp-dur').value+'s';buildAudPreview();state.onChange()});
- q('.pp-br').addEventListener('input',()=>{q('.pp-brv').textContent=q('.pp-br').value+' kbps';buildAudPreview();state.onChange()});
- q('.pp-durv').textContent=q('.pp-dur').value+'s';q('.pp-brv').textContent=q('.pp-br').value+' kbps';
- let audToken=0;
- async function buildAudBytes(){
-  if(!state.audBuf)return null;
-  const dur=Math.min(+q('.pp-dur').value,state.audBuf.duration);
-  const sr=16000,nSamples=Math.round(dur*sr);
-  const octx=new OfflineAudioContext(1,nSamples,sr);
-  const src=octx.createBufferSource();src.buffer=state.audBuf;src.connect(octx.destination);src.start(0);
-  const rendered=await octx.startRendering();
-  const rtCtx=new (window.AudioContext||window.webkitAudioContext)();
-  const streamNode=rtCtx.createMediaStreamDestination();
-  const playSrc=rtCtx.createBufferSource();playSrc.buffer=rendered;playSrc.connect(streamNode);
-  const kbps=+q('.pp-br').value*1000;
-  const mimeCandidates=['audio/webm;codecs=opus','audio/webm','audio/mp4'];
-  let mime=mimeCandidates.find(m=>window.MediaRecorder&&MediaRecorder.isTypeSupported(m))||'';
-  const rec=new MediaRecorder(streamNode.stream,mime?{mimeType:mime,audioBitsPerSecond:kbps}:{audioBitsPerSecond:kbps});
-  const chunks=[];rec.ondataavailable=e=>{if(e.data.size)chunks.push(e.data)};
-  const done=new Promise(res=>rec.onstop=res);
-  rec.start();playSrc.start();
-  await new Promise(r=>setTimeout(r,dur*1000+150));
-  rec.stop();await done;
-  rtCtx.close();
-  const blob=new Blob(chunks,{type:mime||'audio/webm'});
-  const buf=new Uint8Array(await blob.arrayBuffer());
-  const px=new Uint8Array(buf.length+1);px[0]=TYPE_AUDIO;px.set(buf,1);
-  return{bytes:px,blob};
- }
- async function buildAudPreview(){
-  if(!state.audBuf)return;const my=++audToken;
-  const r=await buildAudBytes();if(!r||my!==audToken)return;
-  const a=q('.pp-audpreview');a.src=URL.createObjectURL(r.blob);a.style.display='block';
-  q('.pp-audsize').textContent=r.bytes.length+' bytes';
- }
- async function build(){
-  if(state.kind==='text')return textPayloadBytes(q('.pp-secret').value);
-  if(state.kind==='pic'){const r=await buildPicBytes();return r?r.bytes:textPayloadBytes('')}
-  if(state.kind==='aud'){const r=await buildAudBytes();return r?r.bytes:textPayloadBytes('')}
- }
- q('.pp-picfile').parentElement.onkeydown=e=>{if(e.key==='Enter'||e.key===' ')q('.pp-picfile').click()};
- q('.pp-audfile').parentElement.onkeydown=e=>{if(e.key==='Enter'||e.key===' ')q('.pp-audfile').click()};
- return{build,state};
+// ---- the ONE shared "what to hide" panel ----
+const pp={kind:'text',img:null,audBuf:null,onChange:()=>{}};
+document.querySelectorAll('.row[aria-label="What to hide"] button').forEach(b=>b.onclick=()=>{
+ document.querySelectorAll('.row[aria-label="What to hide"] button').forEach(x=>x.setAttribute('aria-pressed','false'));b.setAttribute('aria-pressed','true');
+ pp.kind=b.dataset.pt;
+ document.querySelectorAll('[data-pp]').forEach(p=>p.classList.toggle('active',p.dataset.pp===pp.kind));
+ pp.onChange();
+});
+$('ppSecret').addEventListener('input',()=>pp.onChange());
+$('ppPicLabel').onkeydown=e=>{if(e.key==='Enter'||e.key===' ')$('ppPicFile').click()};
+$('ppPicFile').onchange=e=>{const f=e.target.files[0];if(!f)return;const im=new Image();im.onload=()=>{pp.img=im;$('ppPicLabel').firstChild.textContent='Picture: '+f.name;drawPicPreview();pp.onChange()};im.src=URL.createObjectURL(f)};
+$('ppRes').addEventListener('input',()=>{drawPicPreview();pp.onChange()});
+$('ppQual').addEventListener('input',()=>{drawPicPreview();pp.onChange()});
+let picToken=0;
+async function buildPicBytes(){
+ if(!pp.img)return null;
+ const long=+$('ppRes').value,[W,H]=computeDims(pp.img,long);
+ const[id,c]=downsampleArea(pp.img,W,H);
+ const rawLen=W*H*3+3;
+ const qual=(+$('ppQual').value)/100;
+ const blob=await canvasToBlobP(c,'image/jpeg',Math.max(0.05,qual));
+ const jbuf=new Uint8Array(await blob.arrayBuffer());
+ if(jbuf.length+1>=rawLen){const d=id.data,px=new Uint8Array(rawLen);px[0]=TYPE_IMG_RAW;px[1]=W;px[2]=H;for(let i=0;i<W*H;i++){px[3+i*3]=d[i*4];px[4+i*3]=d[i*4+1];px[5+i*3]=d[i*4+2]}return{bytes:px,W,H,kind:'raw'}}
+ const px=new Uint8Array(jbuf.length+1);px[0]=TYPE_IMG_JPEG;px.set(jbuf,1);
+ return{bytes:px,W,H,kind:'jpeg',blob};
 }
-// text payload needs an explicit type-0 prefix; fix helper above used raw \u0000 char hack — replace with clean version:
-function textPayloadBytes(str){const body=enc.encode(str);const out=new Uint8Array(body.length+1);out[0]=TYPE_TEXT;out.set(body,1);return out}
+async function drawPicPreview(){
+ if(!pp.img)return;const my=++picToken;
+ const r=await buildPicBytes();if(!r||my!==picToken)return;
+ const cv=$('ppPreview');cv.width=r.W*6;cv.height=r.H*6;cv.style.display='block';const cx=cv.getContext('2d');cx.imageSmoothingEnabled=false;
+ if(r.kind==='jpeg'){const im=await blobToImage(r.blob);if(my!==picToken)return;cx.drawImage(im,0,0,cv.width,cv.height)}
+ else{const[id2]=downsampleArea(pp.img,r.W,r.H);const small=document.createElement('canvas');small.width=r.W;small.height=r.H;small.getContext('2d').putImageData(id2,0,0);cx.drawImage(small,0,0,cv.width,cv.height)}
+ $('ppResV').textContent=r.W+'×'+r.H+' px';
+ $('ppQualV').textContent=r.bytes.length+' bytes'+(r.kind==='raw'?' (raw — smaller than JPEG here)':' at '+$('ppQual').value+'% quality');
+}
+$('ppAudLabel').onkeydown=e=>{if(e.key==='Enter'||e.key===' ')$('ppAudFile').click()};
+$('ppAudFile').onchange=async e=>{
+ const f=e.target.files[0];if(!f)return;
+ $('ppAudLabel').firstChild.textContent='Reading '+f.name+'…';
+ try{
+  const actx=new (window.AudioContext||window.webkitAudioContext)();
+  const buf=await actx.decodeAudioData(await f.arrayBuffer());
+  pp.audBuf=buf;$('ppAudLabel').firstChild.textContent='Audio: '+f.name+' ('+buf.duration.toFixed(1)+'s available)';
+  $('ppDur').max=Math.min(8,buf.duration).toFixed(1);
+  buildAudPreview();
+ }catch{$('ppAudLabel').firstChild.textContent='Could not read that audio file.';pp.audBuf=null}
+ pp.onChange();
+};
+$('ppDur').addEventListener('input',()=>{$('ppDurV').textContent=$('ppDur').value+'s';buildAudPreview();pp.onChange()});
+$('ppBr').addEventListener('input',()=>{$('ppBrV').textContent=$('ppBr').value+' kbps';buildAudPreview();pp.onChange()});
+$('ppDurV').textContent=$('ppDur').value+'s';$('ppBrV').textContent=$('ppBr').value+' kbps';
+let audToken=0;
+async function buildAudBytes(){
+ if(!pp.audBuf)return null;
+ const dur=Math.min(+$('ppDur').value,pp.audBuf.duration);
+ const sr=16000,nSamples=Math.round(dur*sr);
+ const octx=new OfflineAudioContext(1,nSamples,sr);
+ const src=octx.createBufferSource();src.buffer=pp.audBuf;src.connect(octx.destination);src.start(0);
+ const rendered=await octx.startRendering();
+ const rtCtx=new (window.AudioContext||window.webkitAudioContext)();
+ const streamNode=rtCtx.createMediaStreamDestination();
+ const playSrc=rtCtx.createBufferSource();playSrc.buffer=rendered;playSrc.connect(streamNode);
+ const kbps=+$('ppBr').value*1000;
+ const mimeCandidates=['audio/webm;codecs=opus','audio/webm','audio/mp4'];
+ let mime=mimeCandidates.find(m=>window.MediaRecorder&&MediaRecorder.isTypeSupported(m))||'';
+ const rec=new MediaRecorder(streamNode.stream,mime?{mimeType:mime,audioBitsPerSecond:kbps}:{audioBitsPerSecond:kbps});
+ const chunks=[];rec.ondataavailable=e=>{if(e.data.size)chunks.push(e.data)};
+ const done=new Promise(res=>rec.onstop=res);
+ rec.start();playSrc.start();
+ await new Promise(r=>setTimeout(r,dur*1000+150));
+ rec.stop();await done;rtCtx.close();
+ const blob=new Blob(chunks,{type:mime||'audio/webm'});
+ const buf=new Uint8Array(await blob.arrayBuffer());
+ const px=new Uint8Array(buf.length+1);px[0]=TYPE_AUDIO;px.set(buf,1);
+ return{bytes:px,blob};
+}
+async function buildAudPreview(){
+ if(!pp.audBuf)return;const my=++audToken;
+ const r=await buildAudBytes();if(!r||my!==audToken)return;
+ const a=$('ppAudPreview');a.src=URL.createObjectURL(r.blob);a.style.display='block';
+ $('ppAudSize').textContent=r.bytes.length+' bytes';
+}
+async function buildPayload(){
+ if(pp.kind==='text')return textPayloadBytes($('ppSecret').value);
+ if(pp.kind==='pic'){const r=await buildPicBytes();return r?r.bytes:textPayloadBytes('')}
+ if(pp.kind==='aud'){const r=await buildAudBytes();return r?r.bytes:textPayloadBytes('')}
+}
 
-// ---------- decode any typed payload into DOM ----------
+// ---- decode any typed payload into DOM ----
 async function renderPayload(bytes,outEl,msgEl){
  outEl.innerHTML='';msgEl.textContent='';
  if(!bytes||!bytes.length){msgEl.textContent='Nothing to show.';return}
  const t=bytes[0];
  if(t===TYPE_TEXT){
-  const div=document.createElement('div');div.id='foundTextOut';div.style.cssText='font-size:20px;font-weight:700;color:var(--red);word-break:break-word';
+  const div=document.createElement('div');div.className='found-text';
   try{div.textContent=td.decode(bytes.slice(1))}catch{msgEl.textContent='Could not read as text.';return}
   outEl.appendChild(div);
  } else if(t===TYPE_IMG_RAW&&bytes.length>=3){
   const W=bytes[1],H=bytes[2],c=document.createElement('canvas');c.width=W;c.height=H;const x=c.getContext('2d'),im=x.createImageData(W,H);
   for(let i=0;i<W*H;i++){im.data[i*4]=bytes[3+i*3];im.data[i*4+1]=bytes[4+i*3];im.data[i*4+2]=bytes[5+i*3];im.data[i*4+3]=255}
   x.putImageData(im,0,0);
-  const big=document.createElement('canvas');big.width=W*8;big.height=H*8;big.style.maxWidth='280px';const bx=big.getContext('2d');bx.imageSmoothingEnabled=false;bx.drawImage(c,0,0,big.width,big.height);
+  const big=document.createElement('canvas');big.width=W*8;big.height=H*8;big.style.maxWidth='260px';const bx=big.getContext('2d');bx.imageSmoothingEnabled=false;bx.drawImage(c,0,0,big.width,big.height);
   outEl.appendChild(big);
-  const btn=document.createElement('button');btn.className='secondary';btn.textContent='Save this picture';btn.onclick=()=>saveCanvas(big,'revealed.png');outEl.appendChild(btn);
+  const btn=document.createElement('button');btn.className='secondary';btn.textContent='Save this picture';btn.onclick=()=>saveCanvas(big,'revealed.png',msgEl);outEl.appendChild(btn);
  } else if(t===TYPE_IMG_JPEG){
   try{
    const blob=new Blob([bytes.slice(1)],{type:'image/jpeg'});
    const im=await blobToImage(blob);
-   const big=document.createElement('canvas');big.width=im.naturalWidth*4;big.height=im.naturalHeight*4;big.style.maxWidth='280px';const bx=big.getContext('2d');bx.imageSmoothingEnabled=false;bx.drawImage(im,0,0,big.width,big.height);
+   const big=document.createElement('canvas');big.width=im.naturalWidth*4;big.height=im.naturalHeight*4;big.style.maxWidth='260px';const bx=big.getContext('2d');bx.imageSmoothingEnabled=false;bx.drawImage(im,0,0,big.width,big.height);
    outEl.appendChild(big);
-   const btn=document.createElement('button');btn.className='secondary';btn.textContent='Save this picture';btn.onclick=()=>saveCanvas(big,'revealed.png');outEl.appendChild(btn);
+   const btn=document.createElement('button');btn.className='secondary';btn.textContent='Save this picture';btn.onclick=()=>saveCanvas(big,'revealed.png',msgEl);outEl.appendChild(btn);
   }catch{msgEl.textContent='Found a compressed picture but could not decode it.'}
  } else if(t===TYPE_AUDIO){
   const blob=new Blob([bytes.slice(1)],{type:'audio/webm'});
   const a=document.createElement('audio');a.controls=true;a.style.width='100%';a.src=URL.createObjectURL(blob);
   outEl.appendChild(a);
   const btn=document.createElement('button');btn.className='secondary';btn.textContent='Save this audio clip';
-  btn.onclick=async()=>{if(dl){try{await dl.save({filename:'revealed-audio.webm',data:blob})}catch{}}};
+  btn.onclick=async()=>{if(!dl){msgEl.textContent='Saving is not available in this view.';return}try{await dl.save({filename:'revealed-audio.webm',data:blob});msgEl.textContent=''}catch(e){msgEl.textContent=e.code==='declined'?'':'Could not save: '+(e.message||e.code)}};
   outEl.appendChild(btn);
  } else { msgEl.textContent='Unrecognized payload type.'; }
 }
-function saveCanvas(cv,name){cv.toBlob(async blob=>{if(!dl)return;try{await dl.save({filename:name,data:blob})}catch{}},'image/png')}
-let dl=null;window.claude&&claude.use('downloads').then(d=>{dl=d});
+function saveCanvas(cv,name,msgEl){cv.toBlob(async blob=>{if(!dl){if(msgEl)msgEl.textContent='Saving is not available in this view.';return}try{await dl.save({filename:name,data:blob});if(msgEl)msgEl.textContent=''}catch(e){if(msgEl)msgEl.textContent=e.code==='declined'?'':'Could not save: '+(e.message||e.code)}},'image/png')}
 
-// ---------- carrier tabs ----------
+function bytesToFrame(bytes){const len=bytes.length,head=new Uint8Array(4);head[0]=(len>>>24)&255;head[1]=(len>>>16)&255;head[2]=(len>>>8)&255;head[3]=len&255;let sum=0;for(const b of bytes)sum=(sum+b)&255;const out=new Uint8Array(4+len+1);out.set(head,0);out.set(bytes,4);out[4+len]=sum;return out}
+
+// ================= carrier tabs =================
 const carrierDesc={
  text:'Hides inside ordinary-looking text — invisible characters, zero-width bits, or lookalike letters.',
  pic:'Hides in the last 2 bits of every pixel of a real picture — invisible to the eye. Save and share as PNG; JPEG or recompression destroys it.',
- snd:'Turns the payload into two-tone audio — plays out loud, another device decodes it live with its microphone.'
+ snd:'Turns the payload into two-tone audio bursts. Upload a recording — or another device — to decode it.'
 };
 document.querySelectorAll('.row[aria-label="Carrier"] button').forEach(b=>b.onclick=()=>{
  document.querySelectorAll('.row[aria-label="Carrier"] button').forEach(x=>x.setAttribute('aria-pressed','false'));b.setAttribute('aria-pressed','true');
- document.querySelectorAll('.card').forEach(c=>c.classList.remove('active'));
- $('card'+({text:'Text',pic:'Pic',snd:'Snd'})[b.dataset.c]).classList.add('active');
+ document.querySelectorAll('[data-carrier]').forEach(p=>p.classList.toggle('active',p.dataset.carrier===b.dataset.c));
+ document.querySelectorAll('[data-reveal]').forEach(p=>p.classList.toggle('active',p.dataset.reveal===b.dataset.c));
  $('carrierDesc').textContent=carrierDesc[b.dataset.c];
+ refreshAll();
 });
 $('carrierDesc').textContent=carrierDesc.text;
-
-// mount payload panels
-const ppText=makePayloadPanel($('payloadPanel_text'));
-const ppPic=makePayloadPanel($('payloadPanel_pic'));
-const ppSnd=makePayloadPanel($('payloadPanel_snd'));
-
-function bytesToFrame(bytes){const len=bytes.length,head=new Uint8Array(4);head[0]=(len>>>24)&255;head[1]=(len>>>16)&255;head[2]=(len>>>8)&255;head[3]=len&255;let sum=0;for(const b of bytes)sum=(sum+b)&255;const out=new Uint8Array(4+len+1);out.set(head,0);out.set(bytes,4);out[4+len]=sum;return out}
+function refreshAll(){tRefresh();if(pipCoverImg)pRefresh();sEstimate()}
+pp.onChange=refreshAll;
 
 // ===== TEXT CARRIER =====
 const TAG=0xE0000,Z0='\u200B',Z1='\u200C',ZM='\u200D';
@@ -372,7 +342,7 @@ const L2T={},T2L={};HG.forEach(([l,t])=>{L2T[l]=t;T2L[t]=l});
 const PAD=' the quick brown fox jumps over a lazy dog as coy people expect otherwise anyway';
 let tMode='tag';
 const tModeDesc={tag:'Invisible tag characters, one per byte-nibble. Compact and truly invisible. Some apps strip these when sent.',zw:'Zero-width spaces as binary bits. Bulkier, also strippable by some apps.',hg:'Swaps visible letters for identical-looking ones from another alphabet. Nothing invisible, so nothing gets stripped — the cover needs enough letters to carry it.'};
-document.querySelectorAll('.sub-tabs button[data-tm]').forEach(b=>b.onclick=()=>{document.querySelectorAll('.sub-tabs button[data-tm]').forEach(x=>x.setAttribute('aria-pressed','false'));b.setAttribute('aria-pressed','true');tMode=b.dataset.tm;$('textModeDesc').textContent=tModeDesc[tMode];tRefresh()});
+document.querySelectorAll('.row[aria-label="Text method"] button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.row[aria-label="Text method"] button').forEach(x=>x.setAttribute('aria-pressed','false'));b.setAttribute('aria-pressed','true');tMode=b.dataset.tm;$('textModeDesc').textContent=tModeDesc[tMode];tRefresh()});
 $('textModeDesc').textContent=tModeDesc.tag;
 function tagEnc(b){let s='';for(const x of b)s+=String.fromCodePoint(TAG+(x>>4))+String.fromCodePoint(TAG+(x&15));return ZM+s+ZM}
 function tagDec(t){const cps=[...t].map(c=>c.codePointAt(0)).filter(c=>c>=TAG&&c<TAG+16).map(c=>c-TAG);const o=[];for(let i=0;i+1<cps.length;i+=2)o.push((cps[i]<<4)|cps[i+1]);return o.length?o:null}
@@ -382,7 +352,7 @@ function hgBits(b){let bits='11111110'+(b.length*8).toString(2).padStart(24,'0')
 function hgCap(cover){let n=0;for(const ch of cover)if(L2T[ch]!==undefined)n++;return n}
 function hgEnc(cover,b){const bits=hgBits(b);let c=cover;while(hgCap(c)<bits.length)c+=PAD;let out='',bi=0;for(const ch of c){if(L2T[ch]!==undefined&&bi<bits.length)out+=bits[bi++]==='1'?L2T[ch]:ch;else out+=ch}return out}
 function hgDec(t){let bits='';for(const ch of t){if(T2L[ch]!==undefined)bits+='1';else if(L2T[ch]!==undefined)bits+='0'}const i=bits.indexOf('11111110');if(i<0)return null;let p=i+8;const len=parseInt(bits.slice(p,p+24),2);p+=24;const body=bits.slice(p,p+len);if(body.length<len)return null;const o=[];for(let j=0;j+8<=body.length;j+=8)o.push(parseInt(body.slice(j,j+8),2));return o}
-async function tBuildFinal(){let bytes=await ppText.build();if($('tLock').checked&&$('tPw').value)bytes=await lockBytes(bytes,$('tPw').value);return bytes}
+async function tBuildFinal(){let bytes=await buildPayload();if($('tLock').checked&&$('tPw').value)bytes=await lockBytes(bytes,$('tPw').value);return bytes}
 async function tRefresh(){
  const bytes=await tBuildFinal(),cover=$('tCover').value;
  let out;
@@ -394,7 +364,6 @@ async function tRefresh(){
  if(tMode==='hg'){const need=hgBits(bytes).length,cap=hgCap(cover);$('tXray').innerHTML=cap<need?'Cover was too short — padded with extra words to fit <b>'+need+'</b> hidden bits.':'Hidden in <b>'+need+'</b> swapped letters. Looks identical.'}
  else $('tXray').innerHTML='Looks like <b>'+[...cover].length+'</b> characters. Actually <b>'+[...out].length+'</b>. <b>'+hidden+'</b> are invisible.';
 }
-ppText.state.onChange=tRefresh;
 $('tCover').addEventListener('input',tRefresh);
 $('tLock').onchange=()=>{$('tPw').style.display=$('tLock').checked?'block':'none';$('tPw2').style.display=$('tLock').checked?'block':'none';tRefresh()};
 $('tPw').addEventListener('input',tRefresh);
@@ -403,18 +372,17 @@ async function tRevealProcess(raw){
  let bytes=new Uint8Array(raw);
  if(bytes[0]===1){if(!$('tPw2').value){$('tPw2').style.display='block';$('tMsg2').textContent='This one is locked. Enter the password.';return}
   try{bytes=await unlockBytes(bytes,$('tPw2').value)}catch{$('tMsg2').textContent='Wrong password.';return}}
- await renderPayload(bytes,$('revealOut_text'),$('tMsg2'));
+ await renderPayload(bytes,$('found_text'),$('tMsg2'));
 }
 let tRevealTimer=null;
-async function tReveal(){const t=$('tProbe').value;$('revealOut_text').innerHTML='';$('tMsg2').textContent='';if(!t)return;
+async function tReveal(){const t=$('tProbe').value;$('found_text').innerHTML='';$('tMsg2').textContent='';if(!t)return;
  const raw=tagDec(t)||zwDec(t)||hgDec(t);
  if(!raw){$('tMsg2').textContent='No hidden message found. (Some apps strip invisible characters — try lookalike-letters mode for those.)';return}
  await tRevealProcess(raw);
 }
 $('tProbe').addEventListener('input',()=>{clearTimeout(tRevealTimer);tRevealTimer=setTimeout(tReveal,150)});
 $('tPw2').addEventListener('input',()=>{clearTimeout(tRevealTimer);tRevealTimer=setTimeout(tReveal,150)});
-$('tClear').onclick=()=>{clearTimeout(tRevealTimer);$('tProbe').value='';$('tPw2').value='';$('tPw2').style.display='none';$('revealOut_text').innerHTML='';$('tMsg2').textContent='';$('tProbe').focus()};
-tRefresh();
+$('tClear').onclick=()=>{clearTimeout(tRevealTimer);$('tProbe').value='';$('tPw2').value='';$('tPw2').style.display='none';$('found_text').innerHTML='';$('tMsg2').textContent='';$('tProbe').focus()};
 
 // ===== PICTURE CARRIER (LSB steganography) =====
 const BPC=2;
@@ -433,12 +401,11 @@ function fitCover(img,maxSide){let w=img.naturalWidth||img.width,h=img.naturalHe
 let pipCoverImg=null;
 $('picCoverLabel').onkeydown=e=>{if(e.key==='Enter'||e.key===' ')$('picCover').click()};
 $('picCover').onchange=e=>{const f=e.target.files[0];if(!f)return;const im=new Image();im.onload=()=>{pipCoverImg=im;$('picCoverLabel').firstChild.textContent='Cover: '+f.name+' (tap to change)';pRefresh()};im.src=URL.createObjectURL(f)};
-ppPic.state.onChange=pRefresh;
 $('pLock').onchange=()=>{$('pPw').style.display=$('pLock').checked?'block':'none';$('pPw2').style.display=$('pLock').checked?'block':'none';pRefresh()};
 $('pPw').addEventListener('input',pRefresh);
 async function pRefresh(){
  if(!pipCoverImg){$('pXray').textContent='Choose a cover picture above first.';return}
- let bytes=await ppPic.build();if($('pLock').checked&&$('pPw').value)bytes=await lockBytes(bytes,$('pPw').value);
+ let bytes=await buildPayload();if($('pLock').checked&&$('pPw').value)bytes=await lockBytes(bytes,$('pPw').value);
  const[W,H]=fitCover(pipCoverImg,1400);
  const cv=$('stegoCanvas');cv.width=W;cv.height=H;const cx=cv.getContext('2d');cx.drawImage(pipCoverImg,0,0,W,H);
  const id=cx.getImageData(0,0,W,H),cap=lsbCapacityBytes(W,H);
@@ -449,7 +416,7 @@ async function pRefresh(){
 $('pGo').onclick=async()=>{if(!window._stegoCanvas){$('pMsg').textContent='Nothing to save yet.';return}if(!dl){$('pMsg').textContent='Saving not available here.';return}
  window._stegoCanvas.toBlob(async blob=>{try{await dl.save({filename:'stego.png',data:blob});$('pMsg').textContent=''}catch(e){$('pMsg').textContent=e.code==='declined'?'':'Could not save.'}},'image/png')};
 $('picProbeLabel').onkeydown=e=>{if(e.key==='Enter'||e.key===' ')$('picProbe').click()};
-$('picProbe').onchange=e=>{const f=e.target.files[0];if(!f)return;$('revealOut_pic').innerHTML='';$('pMsg2').textContent='Reading picture…';
+$('picProbe').onchange=e=>{const f=e.target.files[0];if(!f)return;$('found_pic').innerHTML='';$('pMsg2').textContent='Reading picture…';
  const im=new Image();im.onload=async()=>{
   const c=document.createElement('canvas');c.width=im.naturalWidth;c.height=im.naturalHeight;const x=c.getContext('2d');x.drawImage(im,0,0);
   const raw=lsbExtract(x.getImageData(0,0,c.width,c.height).data,c.width,c.height);
@@ -458,45 +425,137 @@ $('picProbe').onchange=e=>{const f=e.target.files[0];if(!f)return;$('revealOut_p
   let bytes=new Uint8Array(raw);
   if(bytes[0]===1){if(!$('pPw2').value){$('pPw2').style.display='block';$('pMsg2').textContent='Locked. Enter the password.';window._pendingPic=bytes;return}
    try{bytes=await unlockBytes(bytes,$('pPw2').value)}catch{$('pMsg2').textContent='Wrong password.';return}}
-  await renderPayload(bytes,$('revealOut_pic'),$('pMsg2'));
+  await renderPayload(bytes,$('found_pic'),$('pMsg2'));
  };im.onerror=()=>$('pMsg2').textContent='Could not read that picture.';im.src=URL.createObjectURL(f)};
-$('pPw2').addEventListener('input',async()=>{if(!window._pendingPic||!$('pPw2').value)return;try{const bytes=await unlockBytes(window._pendingPic,$('pPw2').value);window._pendingPic=null;$('pMsg2').textContent='';await renderPayload(bytes,$('revealOut_pic'),$('pMsg2'))}catch{}});
+$('pPw2').addEventListener('input',async()=>{if(!window._pendingPic||!$('pPw2').value)return;try{const bytes=await unlockBytes(window._pendingPic,$('pPw2').value);window._pendingPic=null;$('pMsg2').textContent='';await renderPayload(bytes,$('found_pic'),$('pMsg2'))}catch{}});
 
 // ===== SOUND CARRIER (dual-tone modem) =====
 const LOW=[1200,1400,1600,1800,2000,2200,2400,2600],HIGH=[3200,3400,3600,3800,4000,4200,4400,4600],PRE=[1000,5000],T=0.05;
 function frameToSymbols(frame){const bits=[];for(const b of frame)for(let k=7;k>=0;k--)bits.push((b>>k)&1);while(bits.length%6!==0)bits.push(0);
  const syms=[];for(let i=0;i<bits.length;i+=6){let v=0;for(let k=0;k<6;k++)v=(v<<1)|bits[i+k];syms.push(v)}return syms}
+function symbolsToBits(symbols){const bits=[];for(const s of symbols)for(let k=5;k>=0;k--)bits.push((s>>k)&1);return bits}
 function synth(symbols,sr){const preN=Math.round(0.3*sr),gapN=Math.round(0.05*sr),symN=Math.round(T*sr);
  const total=preN+gapN+symbols.length*symN,buf=new Float32Array(total);
  function tone(start,n,f1,f2){const fade=Math.min(240,Math.floor(n/4));for(let i=0;i<n;i++){let env=1;if(i<fade)env=i/fade;else if(i>n-fade)env=(n-i)/fade;const t=i/sr;buf[start+i]+=env*0.45*(Math.sin(2*Math.PI*f1*t)+Math.sin(2*Math.PI*f2*t))}}
  tone(0,preN,PRE[0],PRE[1]);let p=preN+gapN;for(const s of symbols){tone(p,symN,LOW[s>>3],HIGH[s&7]);p+=symN}return buf}
-async function sEstimate(){const bytes=await ppSnd.build();const n=Math.ceil((bytes.length+5)*8/6);const secs=0.35+n*T;$('sEst').textContent=bytes.length+' bytes → about '+secs.toFixed(1)+'s of sound'}
-ppSnd.state.onChange=sEstimate;
+function toWav(chData,sr){const n=chData.length,b=new ArrayBuffer(44+n*2),v=new DataView(b);const w=(o,s)=>{for(let i=0;i<s.length;i++)v.setUint8(o+i,s.charCodeAt(i))};
+ w(0,'RIFF');v.setUint32(4,36+n*2,true);w(8,'WAVE');w(12,'fmt ');v.setUint32(16,16,true);v.setUint16(20,1,true);v.setUint16(22,1,true);v.setUint32(24,sr,true);v.setUint32(28,sr*2,true);v.setUint16(32,2,true);v.setUint16(34,16,true);w(36,'data');v.setUint32(40,n*2,true);
+ let o=44;for(let i=0;i<n;i++){const s=Math.max(-1,Math.min(1,chData[i]));v.setInt16(o,s*32767,true);o+=2}return b}
+async function sEstimate(){const bytes=await buildPayload();const n=Math.ceil((bytes.length+5)*8/6);const secs=0.35+n*T;$('sEst').textContent=bytes.length+' bytes → about '+secs.toFixed(1)+'s of sound'}
 $('sLock').onchange=()=>{$('sPw').style.display=$('sLock').checked?'block':'none';$('sPw2').style.display=$('sLock').checked?'block':'none';sEstimate()};
 $('sPw').addEventListener('input',sEstimate);
-let actx=null;
-$('sGo').onclick=async()=>{$('sMsg').textContent='';$('sGo').disabled=true;
+$('sGo').onclick=async()=>{$('sMsg').textContent='Generating…';$('sGo').disabled=true;
  try{
-  let bytes=await ppSnd.build();if($('sLock').checked&&$('sPw').value)bytes=await lockBytes(bytes,$('sPw').value);
+  let bytes=await buildPayload();if($('sLock').checked&&$('sPw').value)bytes=await lockBytes(bytes,$('sPw').value);
   const frame=bytesToFrame(bytes),symbols=frameToSymbols(frame);
-  actx=actx||new (window.AudioContext||window.webkitAudioContext)();if(actx.state==='suspended')await actx.resume();
-  const data=synth(symbols,actx.sampleRate);const buf=actx.createBuffer(1,data.length,actx.sampleRate);buf.copyToChannel(data,0);
-  const src=actx.createBufferSource();src.buffer=buf;src.connect(actx.destination);src.onended=()=>{$('sGo').disabled=false};src.start();
-  $('sMsg').textContent='Playing…';
- }catch(e){$('sMsg').textContent='Could not play: '+(e.message||e);$('sGo').disabled=false}};
+  const sr=48000,data=synth(symbols,sr);
+  const wav=toWav(data,sr);window._sndBlob=new Blob([wav],{type:'audio/wav'});
+  const a=$('sPreviewAudio');a.src=URL.createObjectURL(window._sndBlob);a.style.display='block';
+  window._sndDownloadBlob=await encodeWebm(data,sr);
+  $('sDownload').style.display='block';
+  $('sMsg').textContent='Ready — press play above, or play it out loud on speakers for another device to hear.';
+ }catch(e){$('sMsg').textContent='Could not generate: '+(e.message||e)}
+ $('sGo').disabled=false;
+};
+async function encodeWebm(floatData,sr){
+ const buf=new AudioBuffer({length:floatData.length,sampleRate:sr,numberOfChannels:1});
+ buf.copyToChannel(floatData,0);
+ const rtCtx=new (window.AudioContext||window.webkitAudioContext)();
+ const streamNode=rtCtx.createMediaStreamDestination();
+ const src=rtCtx.createBufferSource();src.buffer=buf;src.connect(streamNode);
+ const mime=['audio/webm;codecs=opus','audio/webm'].find(m=>window.MediaRecorder&&MediaRecorder.isTypeSupported(m))||'';
+ const rec=new MediaRecorder(streamNode.stream,mime?{mimeType:mime}:{});
+ const chunks=[];rec.ondataavailable=e=>{if(e.data.size)chunks.push(e.data)};
+ const done=new Promise(res=>rec.onstop=res);
+ rec.start();src.start();
+ await new Promise(r=>setTimeout(r,(floatData.length/sr)*1000+150));
+ rec.stop();await done;rtCtx.close();
+ return new Blob(chunks,{type:mime||'audio/webm'});
+}
+$('sDownload').onclick=async()=>{
+ if(!window._sndDownloadBlob){$('sMsg').textContent='Nothing to save yet.';return}
+ if(!dl){$('sMsg').textContent='Saving is not available in this view.';return}
+ try{await dl.save({filename:'sound-secret.webm',data:window._sndDownloadBlob});$('sMsg').textContent=''}
+ catch(e){$('sMsg').textContent=e.code==='declined'?'':'Could not save: '+(e.message||e.code)}
+};
 sEstimate();
-function goertzel(samples,freq,sr){const n=samples.length,k=Math.round(n*freq/sr),w=2*Math.PI*k/n,cw=Math.cos(w),sw=Math.sin(w),coeff=2*cw;let s0=0,s1=0,s2=0;for(let i=0;i<n;i++){s0=samples[i]+coeff*s1-s2;s2=s1;s1=s0}const re=s1-s2*cw,im=s2*sw;return re*re+im*im}
+
+function goertzel(samples,start,n,freq,sr){const k=Math.round(n*freq/sr),w=2*Math.PI*k/n,cw=Math.cos(w),sw=Math.sin(w),coeff=2*cw;let s0=0,s1=0,s2=0;for(let i=0;i<n;i++){s0=samples[start+i]+coeff*s1-s2;s2=s1;s1=s0}const re=s1-s2*cw,im=s2*sw;return re*re+im*im}
+function bitsToBytesArr(bits,nBytes){const out=new Uint8Array(nBytes);for(let i=0;i<nBytes;i++){let v=0;for(let k=0;k<8;k++)v=(v<<1)|(bits[i*8+k]||0);out[i]=v}return out}
+function bitsToFrameBytes(bits){
+ if(bits.length<32)return null;
+ const head=bitsToBytesArr(bits.slice(0,32),4);
+ const len=(head[0]<<24)|(head[1]<<16)|(head[2]<<8)|head[3];
+ if(len<0||len>2000000)return{bad:true};
+ const totalBits=(4+len+1)*8;
+ if(bits.length<totalBits)return{partial:true};
+ const all=bitsToBytesArr(bits.slice(0,totalBits),4+len+1);
+ const body=all.slice(4,4+len);let sum=0;for(const x of body)sum=(sum+x)&255;
+ return{ok:sum===all[4+len],body};
+}
+async function sHandleDecoded(result,statusEl,msgEl,outEl,pw2El,pendingSetter){
+ if(!result||result.bad){msgEl.textContent='Signal looks corrupted or none found.';return}
+ if(result.partial){msgEl.textContent='Recording seems cut off — not enough data captured.';return}
+ statusEl.textContent=result.ok?'Decoded — checksum OK':'Decoded — checksum mismatch, may be corrupted';
+ let bytes=result.body;
+ if(bytes[0]===1){if(!pw2El.value){pw2El.style.display='block';msgEl.textContent='Locked. Enter the password.';pendingSetter(bytes);return}
+  try{bytes=await unlockBytes(bytes,pw2El.value)}catch{msgEl.textContent='Wrong password.';return}}
+ await renderPayload(bytes,outEl,msgEl);
+}
+// -- file-upload decode (static buffer scan, adaptive threshold) --
+function decodeStaticBuffer(buf,sr){
+ const win=Math.round(0.02*sr);
+ let peak=0;const energies=[];
+ for(let i=0;i+win<buf.length;i+=win){const e=goertzel(buf,i,win,PRE[0],sr)+goertzel(buf,i,win,PRE[1],sr);energies.push(e);if(e>peak)peak=e}
+ if(peak<1e-8)return null;
+ const hiT=peak*0.35,loT=peak*0.15;
+ let idx=-1;for(let j=0;j<energies.length;j++){if(energies[j]>hiT){idx=j;break}}
+ if(idx<0)return null;
+ let j=idx;while(j<energies.length&&energies[j]>loT)j++;
+ const gapEnd=(j*win)+Math.round(0.05*sr),symN=Math.round(T*sr);
+ const maxSymbols=Math.floor((buf.length-gapEnd)/symN),symbols=[];
+ for(let s=0;s<maxSymbols;s++){
+  const start=gapEnd+s*symN;if(start+symN>buf.length)break;
+  let bestLo=-1,bestLoE=-1,bestHi=-1,bestHiE=-1;
+  for(let li=0;li<LOW.length;li++){const e=goertzel(buf,start,symN,LOW[li],sr);if(e>bestLoE){bestLoE=e;bestLo=li}}
+  for(let hi=0;hi<HIGH.length;hi++){const e=goertzel(buf,start,symN,HIGH[hi],sr);if(e>bestHiE){bestHiE=e;bestHi=hi}}
+  symbols.push((bestLo<<3)|bestHi);
+ }
+ return symbols;
+}
+let pendingLockedSndFile=null;
+$('sFileLabel').onkeydown=e=>{if(e.key==='Enter'||e.key===' ')$('sFileProbe').click()};
+$('sFileProbe').onchange=async e=>{
+ const f=e.target.files[0];if(!f)return;
+ $('sMsg2').textContent='Decoding…';$('found_snd').innerHTML='';$('sStatus').textContent='';$('sBar').style.width='0%';$('sBytes').textContent='';
+ try{
+  const actx2=new (window.AudioContext||window.webkitAudioContext)();
+  const audioBuf=await actx2.decodeAudioData(await f.arrayBuffer());
+  const data=audioBuf.getChannelData(0);
+  const symbols=decodeStaticBuffer(data,audioBuf.sampleRate);
+  if(!symbols){$('sMsg2').textContent='No signal found in that recording.';return}
+  $('sMsg2').textContent='';
+  const result=bitsToFrameBytes(symbolsToBits(symbols));
+  await sHandleDecoded(result,$('sStatus'),$('sMsg2'),$('found_snd'),$('sPw2'),v=>pendingLockedSndFile=v);
+ }catch{$('sMsg2').textContent='Could not read that audio file.'}
+};
+$('sPw2').addEventListener('input',async()=>{
+ if(pendingLockedSndFile&&$('sPw2').value){try{const bytes=await unlockBytes(pendingLockedSndFile,$('sPw2').value);pendingLockedSndFile=null;$('sMsg2').textContent='';await renderPayload(bytes,$('found_snd'),$('sMsg2'))}catch{}return}
+ if(pendingLockedSndLive&&$('sPw2').value){try{const bytes=await unlockBytes(pendingLockedSndLive,$('sPw2').value);pendingLockedSndLive=null;$('sMsg2').textContent='';await renderPayload(bytes,$('found_snd'),$('sMsg2'))}catch{}}
+});
+
+// -- live mic decode (secondary path) --
 let rxCtx=null,rxAnalyser=null,rxStream=null,rxRunning=false,rxState='idle',rxIntervalId=null;
-let preambleStreak=0,tPreEnd=0,symbolsSeen=0,rxBits=[],rxLen=null,rxDone=false,td8=null,nextSymbolTime=0,pendingLockedSnd=null;
+let preambleStreak=0,tPreEnd=0,symbolsSeen=0,rxBits=[],rxLen=null,rxDone=false,td8=null,nextSymbolTime=0,pendingLockedSndLive=null;
 async function startListeningS(){
- $('sMsg2').textContent='';$('sStatus').textContent='Asking for microphone…';
+ $('sMsg2').textContent='';$('sStatus').textContent='Asking for microphone…';$('found_snd').innerHTML='';
  try{rxStream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:false,noiseSuppression:false,autoGainControl:false}})}
  catch{$('sStatus').textContent='';$('sMsg2').textContent='Microphone access denied or unavailable.';return}
  rxCtx=new (window.AudioContext||window.webkitAudioContext)();
  const src=rxCtx.createMediaStreamSource(rxStream);rxAnalyser=rxCtx.createAnalyser();rxAnalyser.fftSize=1024;src.connect(rxAnalyser);
  td8=new Float32Array(rxAnalyser.fftSize);
- rxState='idle';preambleStreak=0;symbolsSeen=0;rxBits=[];rxLen=null;rxDone=false;pendingLockedSnd=null;
- $('revealOut_snd').innerHTML='';$('sBar').style.width='0%';$('sBytes').textContent='';$('sPw2').style.display='none';
+ rxState='idle';preambleStreak=0;symbolsSeen=0;rxBits=[];rxLen=null;rxDone=false;pendingLockedSndLive=null;
+ $('sBar').style.width='0%';$('sBytes').textContent='';$('sPw2').style.display='none';
  $('sStatus').textContent='Listening…';$('sTones').textContent='';
  rxRunning=true;$('sListen').style.display='none';$('sStop').style.display='block';
  rxIntervalId=setInterval(rxLoopS,15);
@@ -504,18 +563,17 @@ async function startListeningS(){
 function stopListeningS(){rxRunning=false;if(rxIntervalId)clearInterval(rxIntervalId);if(rxStream)rxStream.getTracks().forEach(t=>t.stop());if(rxCtx)rxCtx.close();
  $('sListen').style.display='block';$('sStop').style.display='none';if(!rxDone)$('sStatus').textContent='Stopped.'}
 $('sListen').onclick=startListeningS;$('sStop').onclick=stopListeningS;
-function bitsToBytesArr(bits,nBytes){const out=new Uint8Array(nBytes);for(let i=0;i<nBytes;i++){let v=0;for(let k=0;k<8;k++)v=(v<<1)|(bits[i*8+k]||0);out[i]=v}return out}
 function rxLoopS(){
  if(!rxRunning)return;
  rxAnalyser.getFloatTimeDomainData(td8);const sr=rxCtx.sampleRate;
- const preE=goertzel(td8,PRE[0],sr)+goertzel(td8,PRE[1],sr);
+ const preE=goertzel(td8,0,td8.length,PRE[0],sr)+goertzel(td8,0,td8.length,PRE[1],sr);
  if(rxState==='idle'){if(preE>40){preambleStreak++;if(preambleStreak>4){rxState='inpreamble';$('sStatus').textContent='Preamble detected…'}}else preambleStreak=Math.max(0,preambleStreak-1)}
  else if(rxState==='inpreamble'){if(preE<15){tPreEnd=rxCtx.currentTime;nextSymbolTime=tPreEnd+0.05+0.72*T;rxState='receiving';$('sStatus').textContent='Receiving…'}}
  else if(rxState==='receiving'){
   if(rxCtx.currentTime>=nextSymbolTime){
    let bestLo=-1,bestLoE=-1,bestHi=-1,bestHiE=-1;
-   for(let i=0;i<LOW.length;i++){const e=goertzel(td8,LOW[i],sr);if(e>bestLoE){bestLoE=e;bestLo=i}}
-   for(let i=0;i<HIGH.length;i++){const e=goertzel(td8,HIGH[i],sr);if(e>bestHiE){bestHiE=e;bestHi=i}}
+   for(let i=0;i<LOW.length;i++){const e=goertzel(td8,0,td8.length,LOW[i],sr);if(e>bestLoE){bestLoE=e;bestLo=i}}
+   for(let i=0;i<HIGH.length;i++){const e=goertzel(td8,0,td8.length,HIGH[i],sr);if(e>bestHiE){bestHiE=e;bestHi=i}}
    $('sTones').textContent='hearing '+LOW[bestLo]+'Hz + '+HIGH[bestHi]+'Hz  (symbol '+(symbolsSeen+1)+')';
    const sym=(bestLo<<3)|bestHi;for(let k=5;k>=0;k--)rxBits.push((sym>>k)&1);symbolsSeen++;onNewBitsS();nextSymbolTime+=T;
   }
@@ -530,18 +588,11 @@ async function onNewBitsS(){
   $('sBytes').textContent=Math.floor(rxBits.length/8)+' / '+(4+rxLen+1)+' bytes';
   if(rxBits.length>=totalBits&&!rxDone){
    rxDone=true;
-   const all=bitsToBytesArr(rxBits,4+rxLen+1);
-   const body=all.slice(4,4+rxLen);let sum=0;for(const x of body)sum=(sum+x)&255;
-   const ok=sum===all[4+rxLen];
-   $('sStatus').textContent=ok?'Received — checksum OK':'Received — checksum mismatch, may be corrupted';
-   let bytes=body;
-   if(bytes[0]===1){if(!$('sPw2').value){$('sPw2').style.display='block';$('sMsg2').textContent='Locked. Enter the password.';pendingLockedSnd=bytes;rxState='idle';preambleStreak=0;return}
-    try{bytes=await unlockBytes(bytes,$('sPw2').value)}catch{$('sMsg2').textContent='Wrong password.';rxState='idle';preambleStreak=0;return}}
-   await renderPayload(bytes,$('revealOut_snd'),$('sMsg2'));
+   const result=bitsToFrameBytes(rxBits);
+   await sHandleDecoded(result,$('sStatus'),$('sMsg2'),$('found_snd'),$('sPw2'),v=>pendingLockedSndLive=v);
    rxState='idle';preambleStreak=0;
   }
  }
 }
-$('sPw2').addEventListener('input',async()=>{if(!pendingLockedSnd||!$('sPw2').value)return;try{const bytes=await unlockBytes(pendingLockedSnd,$('sPw2').value);pendingLockedSnd=null;$('sMsg2').textContent='';await renderPayload(bytes,$('revealOut_snd'),$('sMsg2'))}catch{}});
 </script>
 </body></html>
